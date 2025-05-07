@@ -10,7 +10,9 @@ function App() {
   return (
     <>
       <Header />
-      <MobileSidebar />
+      <MobileSidebar open={false} onClose={function (): void {
+        throw new Error('Function not implemented.');
+      } } />
       <Main />
       <Footer />
     </>

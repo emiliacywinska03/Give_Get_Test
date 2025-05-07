@@ -145,7 +145,7 @@ nav a.active{
   border: none;
 }
 
-@media (max-width: 1350px) {
+@media (max-width: 1300px) {
   .menu-button {
     display: block;
   }

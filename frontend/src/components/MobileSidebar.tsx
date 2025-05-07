@@ -1,8 +1,13 @@
 import React from 'react';
 
-const MobileSidebar: React.FC = () => (
-  <div className="mobile-sidebar hidden" id="mobileSidebar">
-    <button className="close-button" id="closeSidebar">×</button>
+interface MobileSidebarProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const MobileSidebar: React.FC<MobileSidebarProps> = ({ open, onClose }) => (
+  <div className={`mobile-sidebar ${open ? 'visible' : 'hidden'}`} id="mobileSidebar">
+    <button className="close-button" onClick={onClose}>×</button>
     <div className="sidebar-content">
       <div className="sidebar-logo">Give&Get</div>
       <nav className="sidebar-links">
