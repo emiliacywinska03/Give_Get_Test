@@ -1,19 +1,18 @@
-import React from 'react';
-import './App.css'; 
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import MobileSidebar from './components/MobileSidebar';
 import Main from './components/Main';
 import Footer from './components/Footer';
-
+import CreateListing from './pages/CreateListing'; 
 
 function App() {
   return (
     <>
       <Header />
-      <MobileSidebar open={false} onClose={function (): void {
-        throw new Error('Function not implemented.');
-      } } />
-      <Main />
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/listings/create" element={<CreateListing />} />
+      </Routes>
       <Footer />
     </>
   );
