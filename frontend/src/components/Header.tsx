@@ -13,10 +13,6 @@ const Header: React.FC = () => {
             <a href="/" className="logo">Give&Get</a>
             <nav className="nav-links">
               <a href="/" className="active">Strona główna</a>
-              <a href="/listings">Przeglądaj ogłoszenia</a>
-              <a href="/listings/category/work">Praca</a>
-              <a href="/listings/category/sales">Sprzedaż</a>
-              <a href="/listings/category/help">Pomoc</a>
             </nav>
           </div>
           <div className="right">
@@ -30,8 +26,7 @@ const Header: React.FC = () => {
               <input type="text" placeholder="Szukaj..." />
             </div>
             <div className="auth-buttons">
-              <a href="/login" className="login-button">Zaloguj się</a>
-              <a href="/register" className="login-button">Zarejestruj się</a>
+              <a href="/account" className="account-button">Twoje konto</a>
             </div>
           </div>
         </div>

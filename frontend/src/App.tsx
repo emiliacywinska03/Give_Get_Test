@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import CreateListing from './pages/CreateListing'; 
+import CreateListing from './pages/CreateListing';
+import LoginAndRegister from './pages/LoginAndRegister';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/listings/create" element={<CreateListing />} />
+        <Route path="/account" element={<LoginAndRegister />} />
       </Routes>
       <Footer />
     </>

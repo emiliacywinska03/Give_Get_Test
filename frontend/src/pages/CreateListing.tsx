@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../App.css';
 
 const CreateListing: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -10,7 +11,6 @@ const CreateListing: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Tu dodamy wysyłkę do backendu w przyszłości
     const listing = {
       title,
       description,
@@ -24,9 +24,9 @@ const CreateListing: React.FC = () => {
   };
 
   return (
-    <main className="container" style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
-      <h1 style={{ marginBottom: '1rem' }}>Dodaj ogłoszenie</h1>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <main className="create-listing-container">
+      <h1>Dodaj ogłoszenie</h1>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Tytuł"
@@ -60,7 +60,7 @@ const CreateListing: React.FC = () => {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
-        <button type="submit" className="button-add-listing">Dodaj ogłoszenie</button>
+        <button type="submit">Dodaj ogłoszenie</button>
       </form>
     </main>
   );
