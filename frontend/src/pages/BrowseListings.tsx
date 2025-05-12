@@ -3,33 +3,221 @@ import '../App.css';
 
 const BrowseListings: React.FC = () => {
   const [category, setCategory] = useState('all');
+  const [subcategory, setSubcategory] = useState('all');
   
 
   const listings = [
-    { id: 1, type: 'work', title: 'Software Developer', location: 'Warszawa', salary: '5000-10000 PLN', requirements: 'React, Node.js, MongoDB', image: 'https://media.gettyimages.com/id/1451456915/photo/female-freelance-developer-coding-and-programming-coding-on-two-with-screens-with-code.jpg?s=612x612&w=gi&k=20&c=DxUOtEcP_uDY_QINyLlGFQdB5KLKO7EgSDbIMQqOkq4=' },
-    { id: 2, type: 'sales', title: 'iPhone 13', location: 'Kraków', price: '3000 PLN', condition: 'Używany', image: 'https://a.allegroimg.com/original/11fcdb/aca20a204864a58649218ba40014/Apple-iPhone-13-128GB-Gratis-klasa-A-kolory' },
-    { id: 3, type: 'help', title: 'Pomoc techniczna', location: 'Gdańsk', helpType: 'Techniczna', description: 'Pomogę z komputerem', image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxIQEhUTEhMWFRUWFRYYFhUXFxgZFRUWFRcWGBYWFRcYHS0gGBomHRgVITEhJSorLi4uFyA1ODMtNygtLisBCgoKDg0OGhAQGyslHR0tLS0tNi83LS0tLS0tKy0tLS0tLSstNS0tLS0tKy0tLSsrKy0tKy0rLS0tLS0tLS0rLf/AABEIAL8BCAMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABQEDBAYHAgj/xABFEAACAQIDAwoCBwYEBQUAAAABAgADEQQSIQUxQQYHEyJRYXGBkaEysSNCUnKCssEUU2KS0fAIFUOiJDOTwtIWVGOz4f/EABkBAQADAQEAAAAAAAAAAAAAAAABAgQDBf/EACoRAQEAAgEDAgQGAwAAAAAAAAABAhEDBCExEkEUIlFhEzJxkaGxUoHB/9oADAMBAAIRAxEAPwDuMREBERAREQEREBERAREQERLdeutMFnYKo1JYgADvJgXImv0uW2z2YqMUlx25gvkxFj5GTWFxdOquam6uvarBh6iRtOqvRESUEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBETzUcKCSbAAknsA3wNd5a8ohg6WVCOmqXFNd+g1ZiBrYDTxInCto9NVfM1OpUZjqbC5/QSco46pj8e7uSS5JsfqU79VB2ADT143m/wCFwCLYADxnDPk76bOHh3N1zChgyB1kqIexwR7g29LyQ2TtGthXD02K62uCLHuLWt+FxOjVMArCxE13avJord6PZqLbx2MPrLM9yrR+E3vktygGLSzC1QDUDQHvAO7vHCT05FyYxBo1VIutiBa98pO4X4qwuAe6x4TraNcAjcRf1mriz9U7sPNx+ivURE6uJERAREQEREBERAREQEREBERAREQEREBERAREQEREBILlviTTwNcjimXvsxCtbyJk7NU5yadSpg3p097Kx8cljl89fSVyvZfCbyjmPNzhWLVa5HVJKg77sDqq9ttBN5xONakAehqMP4cht4jNf0kXyVwpo4OkgGuUm3exJ/WR7YLFviBnd+jsxJVlChusVAW9yvwA3t9bumW6telhvHGNxwGLFVcwBHcwsR4yuKxSU/idV+8wHzmPs1GC2bflue49hmqcpcc6AVWpowzKFDLm3k/K2p75WTfZ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' },
-    { id: 4, type: 'work', title: 'Graphic Designer', location: 'Wrocław', salary: '4000-7000 PLN', requirements: 'Photoshop, Illustrator', image: 'https://www.rmcad.edu/wp-content/uploads/2024/04/shutterstock_434383288.jpg' },
-    { id: 5, type: 'sales', title: 'Rowerek dziecięcy', location: 'Poznań', price: '150 PLN', condition: 'Prawie nowy', image: 'https://www.super-toys.pl/images/rowerek-12-baoleqi-rozowy/1-pink-800-1.jpg' },
-    { id: 6, type: 'help', title: 'Pomoc sąsiedzka', location: 'Łódź', helpType: 'Sąsiedzka', description: 'Pomogę z zakupami', image: 'https://www.mops-stalwol.pl/images/stories/usasiedzkie23.png' },
-    { id: 7, type: 'sales', title: 'Telewizor Samsung', location: 'Gdynia', price: '1200 PLN', condition: 'Używany', image: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQGhxzAjHg3iC30vJxcBpLa__GhAbVy9-ltHBuZxzOs92uTlK6B' },
-    { id: 8, type: 'work', title: 'Kucharz', location: 'Katowice', salary: '3000-5000 PLN', requirements: 'Doświadczenie w kuchni', image: 'https://2.allegroimg.com/original/01e3c6/578eeb734ec9a6f9424d190a6012/CZAPKA-KAPELUSZ-STROJ-KUCHARZ-KUCHARKA-SZEF-KUCHNI' },
-    { id: 9, type: 'help', title: 'Pomoc przy przeprowadzce', location: 'Warszawa', helpType: 'Fizyczna', description: 'Pomogę przy przeprowadzce', image: 'https://mopr.slupsk.pl/pliki/slupsk-mopr/obrazy/happy-parents-kids-celebrating-apartment-buying-opening-boxes-having-fun-their-new-flat.jpg' },
-    { id: 10, type: 'sales', title: 'Rower szosowy', location: 'Lublin', price: '2500 PLN', condition: 'Nowy', image: 'https://bikeever.pl/wp-content/uploads/superior-xroad-team-comp-1.jpg' },
-    { id: 11, type: 'work', title: 'Sprzedawca w sklepie', location: 'Łódź', salary: '2800-3500 PLN', requirements: 'Obsługa klienta, kasa fiskalna', image: 'https://www.temi.pl/wp-content/uploads/2019/10/sprzedawcy.jpg' },
-    { id: 12, type: 'help', title: 'Pomoc w ogrodzie', location: 'Poznań', helpType: 'Fizyczna', description: 'Pomogę w koszeniu trawy', image: 'https://bi.im-g.pl/im/9d/f3/19/z27211933IHR,Koszenie-trawy-w-Bydgoszczy.jpg' },
-  ];
+    // Praca - IT
+    { id: 1, type: 'work', subcategory: 'IT', title: 'Software Developer', location: 'Warszawa', salary: '5000-10000 PLN', requirements: 'React, Node.js, MongoDB', image: 'https://example.com/software-developer.jpg' },
+    { id: 2, type: 'work', subcategory: 'IT', title: 'Administrator IT', location: 'Kraków', salary: '6000-9000 PLN', requirements: 'Linux, Windows Server, SQL', image: 'https://example.com/admin.jpg' },
+    { id: 3, type: 'work', subcategory: 'IT', title: 'Tester Oprogramowania', location: 'Gdańsk', salary: '5000-7000 PLN', requirements: 'Testowanie manualne, Selenium', image: 'https://example.com/tester.jpg' },
+    { id: 4, type: 'work', subcategory: 'IT', title: 'Frontend Developer', location: 'Wrocław', salary: '8000-12000 PLN', requirements: 'HTML, CSS, JavaScript, React', image: 'https://example.com/frontend.jpg' },
 
-  const filteredListings = category === 'all' ? listings : listings.filter(listing => listing.type === category);
+    // Praca - Projektowanie
+    { id: 5, type: 'work', subcategory: 'projektowanie', title: 'Graphic Designer', location: 'Wrocław', salary: '4000-7000 PLN', requirements: 'Photoshop, Illustrator', image: 'https://example.com/graphic-designer.jpg' },
+    { id: 6, type: 'work', subcategory: 'projektowanie', title: 'Projektant Wnętrz', location: 'Warszawa', salary: '5000-8000 PLN', requirements: 'AutoCAD, SketchUp', image: 'https://example.com/interior.jpg' },
+    { id: 7, type: 'work', subcategory: 'projektowanie', title: 'Projektant UX/UI', location: 'Kraków', salary: '6000-10000 PLN', requirements: 'Figma, Adobe XD', image: 'https://example.com/ux-ui.jpg' },
+    { id: 8, type: 'work', subcategory: 'projektowanie', title: 'Projektant Produktu', location: 'Łódź', salary: '7000-11000 PLN', requirements: 'SolidWorks, AutoCAD', image: 'https://example.com/product-designer.jpg' },
+
+    // Praca - Gastronomia
+    { id: 9, type: 'work', subcategory: 'gastronomia', title: 'Kucharz', location: 'Katowice', salary: '3000-5000 PLN', requirements: 'Doświadczenie w kuchni', image: 'https://example.com/chef.jpg' },
+    { id: 10, type: 'work', subcategory: 'gastronomia', title: 'Kelner', location: 'Gdańsk', salary: '3000-4500 PLN', requirements: 'Obsługa klienta, znajomość win', image: 'https://example.com/waiter.jpg' },
+    { id: 11, type: 'work', subcategory: 'gastronomia', title: 'Barman', location: 'Warszawa', salary: '3500-5000 PLN', requirements: 'Przygotowanie koktajli', image: 'https://example.com/barman.jpg' },
+    { id: 12, type: 'work', subcategory: 'gastronomia', title: 'Cukiernik', location: 'Poznań', salary: '4000-6000 PLN', requirements: 'Wypieki, dekoracja ciast', image: 'https://example.com/cukiernik.jpg' },
+
+    // Praca - Budownictwo
+    { id: 13, type: 'work', subcategory: 'budownictwo', title: 'Operator Koparki', location: 'Poznań', salary: '6000-8000 PLN', requirements: 'Uprawnienia do obsługi koparki', image: 'https://example.com/koparka.jpg' },
+    { id: 14, type: 'work', subcategory: 'budownictwo', title: 'Murator', location: 'Warszawa', salary: '5000-7000 PLN', requirements: 'Doświadczenie w murowaniu', image: 'https://example.com/murator.jpg' },
+    { id: 15, type: 'work', subcategory: 'budownictwo', title: 'Inżynier Budownictwa', location: 'Gdańsk', salary: '8000-12000 PLN', requirements: 'Wykształcenie inżynierskie', image: 'https://example.com/inzynier.jpg' },
+    { id: 16, type: 'work', subcategory: 'budownictwo', title: 'Elektryk Budowlany', location: 'Wrocław', salary: '6000-9000 PLN', requirements: 'Uprawnienia SEP', image: 'https://example.com/elektryk.jpg' },
+
+    // Praca - Nauczanie
+    { id: 17, type: 'work', subcategory: 'nauczanie', title: 'Nauczyciel Matematyki', location: 'Warszawa', salary: '4000-6000 PLN', requirements: 'Doświadczenie w nauczaniu', image: 'https://example.com/nauczyciel.jpg' },
+    { id: 18, type: 'work', subcategory: 'nauczanie', title: 'Lektor Angielskiego', location: 'Kraków', salary: '5000-8000 PLN', requirements: 'C1, doświadczenie w nauczaniu', image: 'https://example.com/lektor.jpg' },
+    { id: 19, type: 'work', subcategory: 'nauczanie', title: 'Trener Personalny', location: 'Gdańsk', salary: '5000-10000 PLN', requirements: 'Certyfikat trenera', image: 'https://example.com/trener.jpg' },
+    { id: 20, type: 'work', subcategory: 'nauczanie', title: 'Nauczyciel WF', location: 'Poznań', salary: '4000-6000 PLN', requirements: 'Uprawnienia pedagogiczne', image: 'https://example.com/wf.jpg' },
+
+    // Praca - Marketing
+    { id: 21, type: 'work', subcategory: 'marketing', title: 'Specjalista ds. Marketingu', location: 'Wrocław', salary: '4500-7000 PLN', requirements: 'SEO, Google Ads', image: 'https://example.com/marketing1.jpg' },
+    { id: 22, type: 'work', subcategory: 'marketing', title: 'Social Media Manager', location: 'Warszawa', salary: '5000-8000 PLN', requirements: 'Facebook, Instagram, Twitter', image: 'https://example.com/marketing2.jpg' },
+    { id: 23, type: 'work', subcategory: 'marketing', title: 'Content Creator', location: 'Gdańsk', salary: '4000-6000 PLN', requirements: 'Copywriting, tworzenie treści', image: 'https://example.com/marketing3.jpg' },
+    { id: 24, type: 'work', subcategory: 'marketing', title: 'Brand Manager', location: 'Poznań', salary: '7000-10000 PLN', requirements: 'Budowanie marki, strategia marketingowa', image: 'https://example.com/marketing4.jpg' },
+
+    // Praca - Administracja
+    { id: 25, type: 'work', subcategory: 'administracja', title: 'Asystent Biurowy', location: 'Łódź', salary: '3000-5000 PLN', requirements: 'Obsługa klienta, organizacja dokumentów', image: 'https://example.com/biuro1.jpg' },
+    { id: 26, type: 'work', subcategory: 'administracja', title: 'Sekretarka', location: 'Warszawa', salary: '3500-5500 PLN', requirements: 'Organizacja biura, kontakt z klientem', image: 'https://example.com/biuro2.jpg' },
+    { id: 27, type: 'work', subcategory: 'administracja', title: 'Office Manager', location: 'Kraków', salary: '5000-8000 PLN', requirements: 'Zarządzanie biurem', image: 'https://example.com/biuro3.jpg' },
+    { id: 28, type: 'work', subcategory: 'administracja', title: 'Recepcjonistka', location: 'Wrocław', salary: '3000-4500 PLN', requirements: 'Obsługa klienta, organizacja recepcji', image: 'https://example.com/biuro4.jpg' },
+
+    // Praca - Produkcja
+    { id: 29, type: 'work', subcategory: 'produkcja', title: 'Pracownik Produkcji', location: 'Katowice', salary: '3500-5000 PLN', requirements: 'Praca na linii produkcyjnej', image: 'https://example.com/produkcja1.jpg' },
+    { id: 30, type: 'work', subcategory: 'produkcja', title: 'Operator Maszyn', location: 'Łódź', salary: '4000-6000 PLN', requirements: 'Obsługa maszyn produkcyjnych', image: 'https://example.com/produkcja2.jpg' },
+    { id: 31, type: 'work', subcategory: 'produkcja', title: 'Magazynier', location: 'Poznań', salary: '3500-5000 PLN', requirements: 'Obsługa wózka widłowego', image: 'https://example.com/produkcja3.jpg' },
+    { id: 32, type: 'work', subcategory: 'produkcja', title: 'Pakowacz', location: 'Gdańsk', salary: '3000-4500 PLN', requirements: 'Pakowanie produktów', image: 'https://example.com/produkcja4.jpg' },
+
+    // Praca - Transport
+    { id: 33, type: 'work', subcategory: 'transport', title: 'Kierowca Ciężarówki', location: 'Szczecin', salary: '6000-8000 PLN', requirements: 'Prawo jazdy kategorii C+E', image: 'https://example.com/ciezarowka.jpg' },
+    { id: 34, type: 'work', subcategory: 'transport', title: 'Kurier', location: 'Warszawa', salary: '4000-6000 PLN', requirements: 'Prawo jazdy kategorii B', image: 'https://example.com/kurier.jpg' },
+    { id: 35, type: 'work', subcategory: 'transport', title: 'Operator Wózka Widłowego', location: 'Kraków', salary: '3500-5000 PLN', requirements: 'Uprawnienia UDT', image: 'https://example.com/wozek.jpg' },
+    { id: 36, type: 'work', subcategory: 'transport', title: 'Logistyk', location: 'Poznań', salary: '5000-7000 PLN', requirements: 'Planowanie tras, zarządzanie magazynem', image: 'https://example.com/logistyk.jpg' },
+
+    // Praca - Sprzedaż
+    { id: 37, type: 'work', subcategory: 'sprzedaż', title: 'Handlowiec', location: 'Białystok', salary: '4000-6000 PLN', requirements: 'Doświadczenie w sprzedaży', image: 'https://example.com/handlowiec1.jpg' },
+    { id: 38, type: 'work', subcategory: 'sprzedaż', title: 'Specjalista ds. Sprzedaży', location: 'Warszawa', salary: '5000-8000 PLN', requirements: 'Umiejętności negocjacyjne', image: 'https://example.com/handlowiec2.jpg' },
+    { id: 39, type: 'work', subcategory: 'sprzedaż', title: 'Przedstawiciel Handlowy', location: 'Gdańsk', salary: '4500-7000 PLN', requirements: 'Prawo jazdy, komunikatywność', image: 'https://example.com/handlowiec3.jpg' },
+    { id: 40, type: 'work', subcategory: 'sprzedaż', title: 'Konsultant Sprzedaży', location: 'Kraków', salary: '4000-6000 PLN', requirements: 'Obsługa klienta, sprzedaż produktów', image: 'https://example.com/handlowiec4.jpg' },
+
+    // Sprzedaż - Elektronika
+    { id: 41, type: 'sales', subcategory: 'elektronika', title: 'Smartphone Samsung', location: 'Warszawa', price: '2500 PLN', condition: 'Nowy', image: 'https://example.com/samsung.jpg' },
+    { id: 42, type: 'sales', subcategory: 'elektronika', title: 'Laptop Lenovo', location: 'Kraków', price: '3000 PLN', condition: 'Używany', image: 'https://example.com/lenovo.jpg' },
+    { id: 43, type: 'sales', subcategory: 'elektronika', title: 'Telewizor LG', location: 'Poznań', price: '4000 PLN', condition: 'Nowy', image: 'https://example.com/lg.jpg' },
+    { id: 44, type: 'sales', subcategory: 'elektronika', title: 'Kamera GoPro', location: 'Gdańsk', price: '1500 PLN', condition: 'Prawie nowa', image: 'https://example.com/gopro.jpg' },
+
+    // Sprzedaż - AGD
+    { id: 45, type: 'sales', subcategory: 'AGD', title: 'Pralka Bosch', location: 'Warszawa', price: '2000 PLN', condition: 'Używana', image: 'https://example.com/pralka.jpg' },
+    { id: 46, type: 'sales', subcategory: 'AGD', title: 'Odkurzacz Dyson', location: 'Kraków', price: '1500 PLN', condition: 'Prawie nowy', image: 'https://example.com/odkurzacz.jpg' },
+    { id: 47, type: 'sales', subcategory: 'AGD', title: 'Kuchenka mikrofalowa', location: 'Gdańsk', price: '500 PLN', condition: 'Nowa', image: 'https://example.com/mikrofalowka.jpg' },
+    { id: 48, type: 'sales', subcategory: 'AGD', title: 'Zmywarka Bosch', location: 'Poznań', price: '2500 PLN', condition: 'Używana', image: 'https://example.com/zmywarka.jpg' },
+
+    // Sprzedaż - Meble
+    { id: 49, type: 'sales', subcategory: 'meble', title: 'Stół dębowy', location: 'Warszawa', price: '1500 PLN', condition: 'Nowy', image: 'https://example.com/stol.jpg' },
+    { id: 50, type: 'sales', subcategory: 'meble', title: 'Komoda IKEA', location: 'Łódź', price: '800 PLN', condition: 'Prawie nowa', image: 'https://example.com/komoda.jpg' },
+    { id: 51, type: 'sales', subcategory: 'meble', title: 'Kanapa narożna', location: 'Kraków', price: '2000 PLN', condition: 'Używana', image: 'https://example.com/kanapa.jpg' },
+    { id: 52, type: 'sales', subcategory: 'meble', title: 'Łóżko sypialniane', location: 'Poznań', price: '1200 PLN', condition: 'Nowe', image: 'https://example.com/lozko.jpg' },
+
+    // Sprzedaż - Książki
+    { id: 53, type: 'sales', subcategory: 'książki', title: 'Seria Harry Potter', location: 'Warszawa', price: '400 PLN', condition: 'Nowe', image: 'https://example.com/harrypotter.jpg' },
+    { id: 54, type: 'sales', subcategory: 'książki', title: 'Trylogia Władca Pierścieni', location: 'Gdańsk', price: '300 PLN', condition: 'Prawie nowe', image: 'https://example.com/wladca.jpg' },
+    { id: 55, type: 'sales', subcategory: 'książki', title: 'Książki edukacyjne', location: 'Kraków', price: '200 PLN', condition: 'Używane', image: 'https://example.com/edukacyjne.jpg' },
+    { id: 56, type: 'sales', subcategory: 'książki', title: 'Powieści kryminalne', location: 'Poznań', price: '250 PLN', condition: 'Nowe', image: 'https://example.com/kryminalne.jpg' },
+
+    // Sprzedaż - Odzież
+    { id: 57, type: 'sales', subcategory: 'odzież', title: 'Kurtka zimowa', location: 'Warszawa', price: '300 PLN', condition: 'Nowa', image: 'https://example.com/kurtka.jpg' },
+    { id: 58, type: 'sales', subcategory: 'odzież', title: 'Spodnie jeansowe', location: 'Kraków', price: '150 PLN', condition: 'Używane', image: 'https://example.com/spodnie.jpg' },
+    { id: 59, type: 'sales', subcategory: 'odzież', title: 'Buty sportowe', location: 'Gdańsk', price: '200 PLN', condition: 'Prawie nowe', image: 'https://example.com/buty.jpg' },
+    { id: 60, type: 'sales', subcategory: 'odzież', title: 'Sukienka wieczorowa', location: 'Poznań', price: '400 PLN', condition: 'Nowa', image: 'https://example.com/sukienka.jpg' },
+
+    // Sprzedaż - Sport i Rekreacja
+    { id: 61, type: 'sales', subcategory: 'sport i rekreacja', title: 'Piłka nożna', location: 'Warszawa', price: '100 PLN', condition: 'Nowa', image: 'https://example.com/pilka.jpg' },
+    { id: 62, type: 'sales', subcategory: 'sport i rekreacja', title: 'Hantle 10kg', location: 'Kraków', price: '200 PLN', condition: 'Używane', image: 'https://example.com/hantle.jpg' },
+    { id: 63, type: 'sales', subcategory: 'sport i rekreacja', title: 'Rower górski', location: 'Gdańsk', price: '1200 PLN', condition: 'Używany', image: 'https://example.com/rower.jpg' },
+    { id: 64, type: 'sales', subcategory: 'sport i rekreacja', title: 'Namiot turystyczny', location: 'Poznań', price: '500 PLN', condition: 'Prawie nowy', image: 'https://example.com/namiot.jpg' },
+
+    // Sprzedaż - Motoryzacja
+    { id: 65, type: 'sales', subcategory: 'motoryzacja', title: 'Samochód Audi A4', location: 'Łódź', price: '50000 PLN', condition: 'Używany', image: 'https://example.com/audi.jpg' },
+    { id: 66, type: 'sales', subcategory: 'motoryzacja', title: 'Opony zimowe', location: 'Gdańsk', price: '800 PLN', condition: 'Używane', image: 'https://example.com/opony.jpg' },
+    { id: 67, type: 'sales', subcategory: 'motoryzacja', title: 'Motocykl Yamaha', location: 'Warszawa', price: '20000 PLN', condition: 'Używany', image: 'https://example.com/motocykl.jpg' },
+    { id: 68, type: 'sales', subcategory: 'motoryzacja', title: 'Akumulator Bosch', location: 'Poznań', price: '300 PLN', condition: 'Nowy', image: 'https://example.com/akumulator.jpg' },
+
+    // Sprzedaż - Zabawki
+    { id: 69, type: 'sales', subcategory: 'zabawki', title: 'Lalka Barbie', location: 'Warszawa', price: '100 PLN', condition: 'Nowa', image: 'https://example.com/lalka.jpg' },
+    { id: 70, type: 'sales', subcategory: 'zabawki', title: 'Klocki LEGO', location: 'Kraków', price: '300 PLN', condition: 'Nowe', image: 'https://example.com/lego.jpg' },
+    { id: 71, type: 'sales', subcategory: 'zabawki', title: 'Pluszowy miś', location: 'Gdańsk', price: '50 PLN', condition: 'Prawie nowy', image: 'https://example.com/mis.jpg' },
+    { id: 72, type: 'sales', subcategory: 'zabawki', title: 'Puzzle 1000 elementów', location: 'Poznań', price: '80 PLN', condition: 'Nowe', image: 'https://example.com/puzzle.jpg' },
+
+    // Sprzedaż - Narzędzia
+    { id: 73, type: 'sales', subcategory: 'narzędzia', title: 'Wiertarka Bosch', location: 'Warszawa', price: '400 PLN', condition: 'Używana', image: 'https://example.com/wiertarka.jpg' },
+    { id: 74, type: 'sales', subcategory: 'narzędzia', title: 'Młotek', location: 'Kraków', price: '50 PLN', condition: 'Nowy', image: 'https://example.com/mlotek.jpg' },
+    { id: 75, type: 'sales', subcategory: 'narzędzia', title: 'Piła tarczowa', location: 'Gdańsk', price: '600 PLN', condition: 'Prawie nowa', image: 'https://example.com/pila.jpg' },
+    { id: 76, type: 'sales', subcategory: 'narzędzia', title: 'Zestaw kluczy', location: 'Poznań', price: '300 PLN', condition: 'Nowy', image: 'https://example.com/klucze.jpg' },
+
+    // Sprzedaż - Muzyka i Instrumenty
+    { id: 77, type: 'sales', subcategory: 'muzyka i instrumenty', title: 'Gitara akustyczna', location: 'Warszawa', price: '800 PLN', condition: 'Używana', image: 'https://example.com/gitara.jpg' },
+    { id: 78, type: 'sales', subcategory: 'muzyka i instrumenty', title: 'Keyboard Yamaha', location: 'Kraków', price: '1200 PLN', condition: 'Prawie nowy', image: 'https://example.com/keyboard.jpg' },
+    { id: 79, type: 'sales', subcategory: 'muzyka i instrumenty', title: 'Skrzypce', location: 'Gdańsk', price: '1500 PLN', condition: 'Nowe', image: 'https://example.com/skrzypce.jpg' },
+    { id: 80, type: 'sales', subcategory: 'muzyka i instrumenty', title: 'Perkusja', location: 'Poznań', price: '3000 PLN', condition: 'Używana', image: 'https://example.com/perkusja.jpg' },
+
+    // Pomoc - Techniczna
+    { id: 81, type: 'help', subcategory: 'techniczna', title: 'Naprawa komputerów', location: 'Warszawa', helpType: 'Techniczna', description: 'Diagnoza i naprawa komputerów', image: 'https://example.com/naprawa-komputerow.jpg' },
+    { id: 82, type: 'help', subcategory: 'techniczna', title: 'Instalacja oprogramowania', location: 'Kraków', helpType: 'Techniczna', description: 'Pomoc w instalacji i konfiguracji oprogramowania', image: 'https://example.com/instalacja-oprogramowania.jpg' },
+    { id: 83, type: 'help', subcategory: 'techniczna', title: 'Naprawa telefonów', location: 'Poznań', helpType: 'Techniczna', description: 'Wymiana wyświetlaczy, baterii, naprawa gniazd', image: 'https://example.com/naprawa-telefonow.jpg' },
+    { id: 84, type: 'help', subcategory: 'techniczna', title: 'Serwis RTV', location: 'Wrocław', helpType: 'Techniczna', description: 'Naprawa telewizorów i sprzętu audio', image: 'https://example.com/serwis-rtv.jpg' },
+
+    // Pomoc - Sąsiedzka
+    { id: 85, type: 'help', subcategory: 'sąsiedzka', title: 'Pomoc w zakupach', location: 'Łódź', helpType: 'Sąsiedzka', description: 'Pomogę w codziennych zakupach', image: 'https://example.com/zakupy.jpg' },
+    { id: 86, type: 'help', subcategory: 'sąsiedzka', title: 'Wyprowadzanie psa', location: 'Gdańsk', helpType: 'Sąsiedzka', description: 'Wyprowadzanie psów na spacer', image: 'https://example.com/wyprowadzanie-psa.jpg' },
+    { id: 87, type: 'help', subcategory: 'sąsiedzka', title: 'Pomoc w ogrodzie', location: 'Katowice', helpType: 'Sąsiedzka', description: 'Podlewanie kwiatów, grabienie liści', image: 'https://example.com/ogrod.jpg' },
+    { id: 88, type: 'help', subcategory: 'sąsiedzka', title: 'Wsparcie dla seniorów', location: 'Szczecin', helpType: 'Sąsiedzka', description: 'Pomoc w codziennych czynnościach', image: 'https://example.com/wsparcie-seniorow.jpg' },
+
+    // Pomoc - Fizyczna
+    { id: 89, type: 'help', subcategory: 'fizyczna', title: 'Pomoc przy przeprowadzce', location: 'Warszawa', helpType: 'Fizyczna', description: 'Przenoszenie mebli i ciężkich przedmiotów', image: 'https://example.com/przeprowadzka.jpg' },
+    { id: 90, type: 'help', subcategory: 'fizyczna', title: 'Pomoc w remontach', location: 'Poznań', helpType: 'Fizyczna', description: 'Malowanie, tapetowanie, układanie paneli', image: 'https://example.com/remonty.jpg' },
+    { id: 91, type: 'help', subcategory: 'fizyczna', title: 'Prace ogrodowe', location: 'Wrocław', helpType: 'Fizyczna', description: 'Koszenie trawy, przycinanie drzew', image: 'https://example.com/prace-ogrodowe.jpg' },
+    { id: 92, type: 'help', subcategory: 'fizyczna', title: 'Pomoc przy budowie', location: 'Kraków', helpType: 'Fizyczna', description: 'Noszenie materiałów budowlanych', image: 'https://example.com/budowa.jpg' },
+
+    // Pomoc - Nauka
+    { id: 93, type: 'help', subcategory: 'nauka', title: 'Korepetycje z matematyki', location: 'Warszawa', helpType: 'Nauka', description: 'Pomogę w nauce matematyki na każdym poziomie', image: 'https://example.com/korepetycje-matematyka.jpg' },
+    { id: 94, type: 'help', subcategory: 'nauka', title: 'Nauka języka angielskiego', location: 'Łódź', helpType: 'Nauka', description: 'Lekcje języka angielskiego dla dzieci i dorosłych', image: 'https://example.com/nauka-angielskiego.jpg' },
+    { id: 95, type: 'help', subcategory: 'nauka', title: 'Nauka gry na gitarze', location: 'Gdańsk', helpType: 'Nauka', description: 'Lekcje gry na gitarze akustycznej i elektrycznej', image: 'https://example.com/nauka-gitary.jpg' },
+    { id: 96, type: 'help', subcategory: 'nauka', title: 'Przygotowanie do matury', location: 'Katowice', helpType: 'Nauka', description: 'Przygotowanie do matury z matematyki i fizyki', image: 'https://example.com/przygotowanie-matura.jpg' },
+
+    // Pomoc - Opieka nad dziećmi
+    { id: 97, type: 'help', subcategory: 'opieka nad dziećmi', title: 'Opieka nad niemowlętami', location: 'Warszawa', helpType: 'Opieka nad dziećmi', description: 'Opieka nad niemowlętami do 2 lat', image: 'https://example.com/opieka-niemowleta.jpg' },
+    { id: 98, type: 'help', subcategory: 'opieka nad dziećmi', title: 'Niania na wieczór', location: 'Kraków', helpType: 'Opieka nad dziećmi', description: 'Opieka nad dziećmi podczas wyjść rodziców', image: 'https://example.com/niania.jpg' },
+    { id: 99, type: 'help', subcategory: 'opieka nad dziećmi', title: 'Opieka po szkole', location: 'Poznań', helpType: 'Opieka nad dziećmi', description: 'Pomoc w odrabianiu lekcji i zabawie', image: 'https://example.com/opieka-po-szkole.jpg' },
+    { id: 100, type: 'help', subcategory: 'opieka nad dziećmi', title: 'Animator na urodziny', location: 'Wrocław', helpType: 'Opieka nad dziećmi', description: 'Organizacja zabaw i animacji na urodziny', image: 'https://example.com/animator.jpg' },
+
+    // Pomoc - Przeprowadzki
+    { id: 101, type: 'help', subcategory: 'przeprowadzki', title: 'Transport mebli', location: 'Warszawa', helpType: 'Przeprowadzki', description: 'Transport dużych mebli, demontaż i montaż', image: 'https://example.com/transport-mebli.jpg' },
+    { id: 102, type: 'help', subcategory: 'przeprowadzki', title: 'Pakowanie i rozpakowywanie', location: 'Kraków', helpType: 'Przeprowadzki', description: 'Pomoc w pakowaniu i rozpakowywaniu rzeczy', image: 'https://example.com/pakowanie.jpg' },
+    { id: 103, type: 'help', subcategory: 'przeprowadzki', title: 'Przeprowadzki biur', location: 'Poznań', helpType: 'Przeprowadzki', description: 'Profesjonalna pomoc w przeprowadzkach firm i biur', image: 'https://example.com/przeprowadzki-biur.jpg' },
+    { id: 104, type: 'help', subcategory: 'przeprowadzki', title: 'Przewóz pianin', location: 'Wrocław', helpType: 'Przeprowadzki', description: 'Transport ciężkich instrumentów muzycznych', image: 'https://example.com/przewoz-pianin.jpg' },
+
+    // Pomoc - Sprzątanie
+    { id: 105, type: 'help', subcategory: 'sprzątanie', title: 'Sprzątanie mieszkań', location: 'Warszawa', helpType: 'Sprzątanie', description: 'Sprzątanie po remoncie, mycie okien', image: 'https://example.com/sprzatanie-mieszkan.jpg' },
+    { id: 106, type: 'help', subcategory: 'sprzątanie', title: 'Sprzątanie biur', location: 'Kraków', helpType: 'Sprzątanie', description: 'Profesjonalne sprzątanie biur i przestrzeni firmowych', image: 'https://example.com/sprzatanie-biur.jpg' },
+    { id: 107, type: 'help', subcategory: 'sprzątanie', title: 'Pranie dywanów', location: 'Poznań', helpType: 'Sprzątanie', description: 'Czyszczenie i pranie dywanów oraz wykładzin', image: 'https://example.com/pranie-dywanow.jpg' },
+    { id: 108, type: 'help', subcategory: 'sprzątanie', title: 'Mycie okien', location: 'Wrocław', helpType: 'Sprzątanie', description: 'Profesjonalne mycie okien i przeszkleń', image: 'https://example.com/mycie-okien.jpg' },
+
+    // Pomoc - Ogród
+    { id: 109, type: 'help', subcategory: 'ogród', title: 'Koszenie trawy', location: 'Warszawa', helpType: 'Ogród', description: 'Regularne koszenie trawnika', image: 'https://example.com/koszenie-trawy.jpg' },
+    { id: 110, type: 'help', subcategory: 'ogród', title: 'Przycinanie drzew', location: 'Kraków', helpType: 'Ogród', description: 'Przycinanie drzew i krzewów', image: 'https://example.com/przycinanie-drzew.jpg' },
+    { id: 111, type: 'help', subcategory: 'ogród', title: 'Sadzenie roślin', location: 'Poznań', helpType: 'Ogród', description: 'Sadzenie kwiatów, warzyw i drzewek', image: 'https://example.com/sadzenie-roslin.jpg' },
+    { id: 112, type: 'help', subcategory: 'ogród', title: 'Zakładanie ogrodów', location: 'Wrocław', helpType: 'Ogród', description: 'Projektowanie i zakładanie ogrodów', image: 'https://example.com/zakladanie-ogrodow.jpg' },
+
+    // Pomoc - Złota rączka
+    { id: 113, type: 'help', subcategory: 'złota rączka', title: 'Naprawa mebli', location: 'Warszawa', helpType: 'Złota rączka', description: 'Montaż, naprawa i renowacja mebli', image: 'https://example.com/naprawa-mebli.jpg' },
+    { id: 114, type: 'help', subcategory: 'złota rączka', title: 'Naprawa hydrauliki', location: 'Kraków', helpType: 'Złota rączka', description: 'Usuwanie wycieków, montaż kranów', image: 'https://example.com/hydraulika.jpg' },
+    { id: 115, type: 'help', subcategory: 'złota rączka', title: 'Instalacja elektryki', location: 'Poznań', helpType: 'Złota rączka', description: 'Instalacja gniazdek, oświetlenia', image: 'https://example.com/elektryka.jpg' },
+    { id: 116, type: 'help', subcategory: 'złota rączka', title: 'Montaż półek i szafek', location: 'Wrocław', helpType: 'Złota rączka', description: 'Montaż półek, szafek i innych elementów wyposażenia', image: 'https://example.com/montaz-polki.jpg' },
+
+    // Pomoc - Transport
+    { id: 117, type: 'help', subcategory: 'transport', title: 'Przewóz osób', location: 'Warszawa', helpType: 'Transport', description: 'Przewóz osób na krótkich i długich trasach', image: 'https://example.com/przewoz-osob.jpg' },
+    { id: 118, type: 'help', subcategory: 'transport', title: 'Transport paczek', location: 'Kraków', helpType: 'Transport', description: 'Przewóz paczek i przesyłek kurierskich', image: 'https://example.com/transport-paczek.jpg' },
+    { id: 119, type: 'help', subcategory: 'transport', title: 'Transport mebli', location: 'Poznań', helpType: 'Transport', description: 'Transport mebli i dużych przedmiotów', image: 'https://example.com/transport-mebli.jpg' },
+    { id: 120, type: 'help', subcategory: 'transport', title: 'Usługi kurierskie', location: 'Wrocław', helpType: 'Transport', description: 'Szybkie i bezpieczne usługi kurierskie', image: 'https://example.com/uslugi-kurierskie.jpg' },
+
+];
+
+
+
+  const filteredListings = listings.filter(listing => {
+    return (category === 'all' || listing.type === category) && (subcategory === 'all' || listing.subcategory === subcategory);
+  });
+
+  const subcategories: { [key: string]: string[] } = {
+    work: ['all', 'IT', 'projektowanie', 'gastronomia', 'budownictwo', 'nauczanie', 'marketing', 'administracja', 'produkcja', 'transport', 'sprzedaż'],
+    sales: ['all', 'elektronika', 'AGD', 'meble', 'książki', 'odzież', 'sport i rekreacja', 'motoryzacja', 'zabawki', 'narzędzia', 'muzyka i instrumenty'],
+    help: ['all', 'techniczna', 'sąsiedzka', 'fizyczna', 'nauka' , 'opieka nad dziećmi', 'przeprowadzki', 'sprzątanie', 'ogród', 'złota rączka', 'transport'],
+  };
+  
 
   return (
     <div className="browse-listings-container">
       <div className="filter-bar">
-        <button onClick={() => setCategory('all')} className={category === 'all' ? 'active' : ''}>Wszystkie</button>
-        <button onClick={() => setCategory('work')} className={category === 'work' ? 'active' : ''}>Praca</button>
-        <button onClick={() => setCategory('sales')} className={category === 'sales' ? 'active' : ''}>Sprzedaż</button>
-        <button onClick={() => setCategory('help')} className={category === 'help' ? 'active' : ''}>Pomoc</button>
+        <button onClick={() => { setCategory('all'); setSubcategory('all'); }} className={category === 'all' ? 'active' : ''}>Wszystkie</button>
+        <button onClick={() => { setCategory('work'); setSubcategory('all'); }} className={category === 'work' ? 'active' : ''}>Praca</button>
+        <button onClick={() => { setCategory('sales'); setSubcategory('all'); }} className={category === 'sales' ? 'active' : ''}>Sprzedaż</button>
+        <button onClick={() => { setCategory('help'); setSubcategory('all'); }} className={category === 'help' ? 'active' : ''}>Pomoc</button>
       </div>
+
+      {category !== 'all' && (
+        <div className="filter-bar">
+          {subcategories[category].map(subcat => (
+            <button key={subcat} onClick={() => setSubcategory(subcat)} className={subcategory === subcat ? 'active' : ''}>{subcat === 'all' ? 'Wszystkie' : subcat}</button>
+          ))}
+        </div>
+      )}
 
       <div className="listings">
         {filteredListings.map(listing => (
